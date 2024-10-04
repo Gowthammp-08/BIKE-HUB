@@ -1,0 +1,51 @@
+.service-form {  
+    display: flex;  
+    flex-direction: column;  
+    border-radius: 10px;  
+}  
+
+.service-form label {  
+    margin-top: 1rem;  
+}  
+
+.service-form input,  
+.service-form select {  
+    padding: 0.5rem;  
+    margin-top: 0.5rem;  
+    border: 1px solid #ccc;  
+    border-radius: 5px;  
+}  
+
+ 
+.service-form .radio-options {  
+    display: flex;  
+    align-items: center;  
+    margin-top: 0.5rem; 
+}  
+
+
+.service-form .radio-options label {  
+    margin-right: 0.5rem;  
+    display: flex;  
+    align-items: center;  
+}  
+ 
+.service-form .action-buttons {  
+    display: flex;  
+    justify-content: space-between;   
+    margin-top: 1.5rem; 
+}  
+
+.service-form button {  
+    padding: 0.75rem;  
+    background-color: #28a745;  
+    color: white;  
+    border: none;  
+    border-radius: 5px;  
+    cursor: pointer;  
+    transition: background-color 0.3s ease;  
+}  
+
+.service-form button:hover {  
+    background-color: #218838;  
+}

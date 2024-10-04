@@ -1,0 +1,73 @@
+.navbar {
+    display: flex;
+    align-items: center;
+    background-color: #191212;
+    padding: 1rem;
+  }
+  @import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+
+  
+  .logo {
+    font-family: 'Lobster', cursive;
+    color: white;
+    font-size: 1.7rem;
+    padding-right: 10px;
+    margin-left:0;
+  }
+  .side {
+    font-family: 'Lobster', cursive;
+    color: white;padding-top: 5px;
+    padding-right: 490px;
+  }
+  
+  .center-nav a {
+    margin: 0 1rem;
+    color: white;
+    text-decoration: none;
+  }
+  
+  .right-nav a, .profile-dropdown span {
+    margin: 0rem;
+    color: rgb(253, 250, 250);
+    text-decoration: none;
+    cursor: pointer;
+  }
+  
+  .profile-dropdown {
+    position: relative;
+    display: inline-flex;
+    padding-left: 20px;
+  }
+  
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: rgb(0, 0, 0);
+    min-width: 160px;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    color: black;
+  }
+  
+  .profile-dropdown:hover .dropdown-content {
+    display: block;
+    border-radius: 10px;
+  }
+  
+  .dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+  }
+  
+  .dropdown-content a:hover {
+    background-color: #ddd;
+  }
+
+  .logo-image {
+    height: 40px;
+    margin-right: 0.5rem;
+    vertical-align: middle; 
+  }
+  
