@@ -12,15 +12,13 @@ import logo from './components/images/logo.jpeg';
 import './App.css';
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  // Check for token in localStorage initially
+  const [isLoggedIn, setIsLoggedIn] = useState(() => !!localStorage.getItem('token'));
   const navigate = useNavigate();
-
 
   useEffect(() => {
     const token = localStorage.getItem('token');
-    if (token) {
-      setIsLoggedIn(true);
-    }
+    setIsLoggedIn(!!token);
   }, []);
 
   const handleLogin = (status) => {
