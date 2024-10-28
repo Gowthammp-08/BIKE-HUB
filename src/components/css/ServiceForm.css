@@ -1,51 +1,77 @@
-.service-form {  
-    display: flex;  
-    flex-direction: column;  
-    border-radius: 10px;  
-}  
+/* Form Container */
+.service-form {
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #f9f9f9;
+}
 
-.service-form label {  
-    margin-top: 1rem;  
-}  
+/* Form Labels and Inputs */
+.service-form label {
+    margin-top: 1rem;
+    font-weight: bold;
+    color: #333;
+}
 
-.service-form input,  
-.service-form select {  
-    padding: 0.5rem;  
-    margin-top: 0.5rem;  
-    border: 1px solid #ccc;  
-    border-radius: 5px;  
-}  
+.service-form input,
+.service-form select {
+    padding: 0.5rem;
+    margin-top: 0.25rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+    box-sizing: border-box;
+}
 
- 
-.service-form .radio-options {  
-    display: flex;  
-    align-items: center;  
-    margin-top: 0.5rem; 
-}  
+/* Radio Options Section */
+.service-form .radio-options {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 0.5rem;
+}
 
+.service-form .radio-options label {
+    display: flex;
+    align-items: center;
+    margin: 0;
+    font-weight: normal;
+}
 
-.service-form .radio-options label {  
-    margin-right: 0.5rem;  
-    display: flex;  
-    align-items: center;  
-}  
- 
-.service-form .action-buttons {  
-    display: flex;  
-    justify-content: space-between;   
-    margin-top: 1.5rem; 
-}  
+.service-form .radio-options input[type="radio"] {
+    margin-right: 0.3rem;
+}
 
-.service-form button {  
-    padding: 0.75rem;  
-    background-color: #28a745;  
-    color: white;  
-    border: none;  
-    border-radius: 5px;  
-    cursor: pointer;  
-    transition: background-color 0.3s ease;  
-}  
+/* Button Section */
+.service-form .action-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1.5rem;
+}
 
-.service-form button:hover {  
-    background-color: #218838;  
+.service-form button {
+    padding: 0.75rem 1.5rem;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.service-form button:hover {
+    background-color: #218838;
+}
+
+.service-form button[type="button"] {
+    background-color: #dc3545;
+}
+
+.service-form button[type="button"]:hover {
+    background-color: #c82333;
 }

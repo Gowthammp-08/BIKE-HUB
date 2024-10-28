@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';  
-import ServiceForm from './ServiceForm';  
+import ServiceForm from './ServiceForm'; 
+import { useNavigate } from 'react-router-dom'; 
 import './css/Home.css';  
 
 const images = [ 
@@ -11,17 +12,18 @@ const images = [
 ];  
 
 const availableServices = [  
-    { name: 'Water Wash', description: 'Thorough cleaning of your bike to keep it looking brand new.', image: require('./images/waterwash.png')  },  
-    { name: 'Full Bike Service', description: 'Comprehensive servicing to ensure your bike runs smoothly.', image: require('./images/fullservice.png')  },  
-    { name: 'Oil Change', description: 'Changing engine oil for optimal performance and longevity.', image: require('./images/oil.png')  },  
-    { name: 'Brake Adjustment', description: 'Adjusting brakes for better safety and response.', image: require('./images/break.png')  },  
-    { name: 'Chain Lubrication', description: 'Keeping your chain lubricated for a smooth ride.', image: require('./images/slide1.jpg')  },  
+    { name: 'Water Wash', description: 'Thorough cleaning of your bike to keep it looking brand new.', image: require('./images/waterwash.png') },  
+    { name: 'Full Bike Service', description: 'Comprehensive servicing to ensure your bike runs smoothly.', image: require('./images/fullservice.png') },  
+    { name: 'Oil Change', description: 'Changing engine oil for optimal performance and longevity.', image: require('./images/oil.png') },  
+    { name: 'Brake Adjustment', description: 'Adjusting brakes for better safety and response.', image: require('./images/break.png') },  
+    { name: 'Chain Lubrication', description: 'Keeping your chain lubricated for a smooth ride.', image: require('./images/slide1.jpg') },  
 ];  
 
 function Home({ isLoggedIn }) {  
+    const navigate = useNavigate();
     const [showForm, setShowForm] = useState(false);  
     const [showError, setShowError] = useState(false);  
-    const [currentImageIndex, setCurrentImageIndex] = useState(0);  
+    const [currentImageIndex, setCurrentImageIndex] = useState(0); 
 
     const handleRegisterClick = () => {  
         if (!isLoggedIn) {  
@@ -77,6 +79,15 @@ function Home({ isLoggedIn }) {
             <button onClick={handleRegisterClick} className="register-btn">  
                 Register for Service  
             </button>  
+            {isLoggedIn ? (
+                <button onClick={() => navigate('/service-status')} className="registerstatus-btn">  
+                    Service Status  
+                </button>
+            ) : (
+                <button onClick={() => navigate('/login')} className="registerstatus-btn">
+                    Login to Check Service Status
+                </button>
+            )}
 
             <div id="explore-section" className="explore-us">  
                 <h2>Available Services</h2>  

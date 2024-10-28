@@ -1,34 +1,134 @@
-.profile-container {
-    padding: 20px;
-  }
-  
-  .profile-form {
-    display: flex;
-    flex-direction: column;
-    max-width: 400px;
-  }
-  
-  .profile-form label {
-    margin-bottom: 5px;
-  }
-  
-  .profile-form input {
-    margin-bottom: 15px;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
-  
-  .profile-form button {
-    padding: 10px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  .profile-form button:hover {
-    background-color: #45a049;
-  }
-  
+/* Profile.css */  
+
+body {  
+  margin: 0;  
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;  
+  background: linear-gradient(135deg, #f3f4f6, #e2e8f0);  
+  color: #333;  
+}  
+
+.profile-container {  
+  width: 90%;  
+  max-width: 600px;  
+  margin: 2rem auto;  
+  padding: 20px 30px;  
+  background: white;  
+  border-radius: 15px;  
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);  
+  position: relative;  
+  overflow: hidden;  
+  transition: transform 0.3s ease-in-out;  
+}  
+
+.profile-container::before {  
+  content: "";  
+  position: absolute;  
+  top: 0;  
+  left: 50%;  
+  width: 200%;  
+  height: 200%;  
+  background: linear-gradient(45deg, rgba(236, 239, 241, 0.3) 25%, transparent 25%) repeat;  
+  background-size: 40px 40px;  
+  animation: wave 5s ease-in-out infinite;  
+  transform: translateX(-50%);  
+  z-index: 0; /* Make it go behind other elements */  
+}  
+
+@keyframes wave {  
+  0% {  
+      transform: translate(-50%, 0);  
+  }  
+  50% {  
+      transform: translate(-50%, -10px);  
+  }  
+  100% {  
+      transform: translate(-50%, 0);  
+  }  
+}  
+
+.profile-header {  
+  text-align: center;  
+  margin-bottom: 2rem;  
+  position: relative;  
+  z-index: 1; /* Bring it above the pseudo-element */  
+}  
+
+.profile-header h1 {  
+  font-size: 2.2rem;  
+  color: #4A90E2;  
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2);  
+  margin: 0;  
+}  
+
+.profile-content {  
+  padding: 1rem;  
+  z-index: 1; /* Bring it above the pseudo-element */  
+}  
+
+.profile-content p {  
+  font-size: 1.1rem;  
+  line-height: 1.8;  
+  margin: 0.5rem 0;  
+  transform: translateY(10px);  
+  opacity: 0;  
+  animation: fadeInUp 0.5s forwards;  
+}  
+
+.profile-content strong {  
+  color: #E94E77;  
+}  
+
+.logout-button {  
+  background: linear-gradient(45deg, #E94E77, #EE6F0A);  
+  color: white;  
+  border: none;  
+  border-radius: 5px;  
+  font-size: 1rem;  
+  padding: 12px 15px;  
+  cursor: pointer;  
+  transition: transform 0.2s, background 0.3s;  
+  display: block;  
+  margin: 2rem auto 0;  
+  width: 100%;  
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);  
+  position: relative;  
+}  
+
+.logout-button:hover {  
+  background: linear-gradient(45deg, #EE6F0A, #E94E77);  
+  transform: translateY(-3px); /* Lift effect */  
+}  
+
+.logout-button:active {  
+  transform: translateY(1px); /* Press down effect */  
+}  
+
+@keyframes fadeInUp {  
+  from {  
+      opacity: 0;  
+      transform: translateY(20px);  
+  }  
+  to {  
+      opacity: 1;  
+      transform: translateY(0);  
+  }  
+}  
+
+@media (max-width: 600px) {  
+  .profile-container {  
+      width: 95%;  
+      padding: 15px;  
+  }  
+
+  .profile-header h1 {  
+      font-size: 1.8rem;  
+  }  
+
+  .profile-content p {  
+      font-size: 1rem;  
+  }  
+
+  .logout-button {  
+      font-size: 0.9rem;  
+  }  
+}

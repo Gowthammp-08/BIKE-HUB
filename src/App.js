@@ -1,22 +1,37 @@
-import React, { useState } from 'react';  
-import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';  
-import Home from './components/Home';  
-import SignUp from './components/Signup';  
-import Login from './components/Login';  
-import BikeOptions from './components/BikeOptions';  
+import React, { useState, useEffect } from 'react';
+import { Route, Routes, NavLink, useNavigate } from 'react-router-dom';
+
+import Home from './components/Home';
+import SignUp from './components/Signup';
+import Login from './components/Login';
+import BikeOptions from './components/BikeOptions';
+import Profile from './components/Profile';
+import ServiceStatus from './components/ServiceStatus';
+import ServiceForm from './components/ServiceForm';
 import logo from './components/images/logo.jpeg';
-import './App.css';  
+import './App.css';
 
-function App() {  
-  const [isLoggedIn, setIsLoggedIn] = useState(false);  
+function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const navigate = useNavigate();
 
-  const handleLogin = (status) => {  
-    setIsLoggedIn(status);  
-  };  
 
-  const handleLogout = () => {  
-    setIsLoggedIn(false);  
-  };  
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      setIsLoggedIn(true);
+    }
+  }, []);
+
+  const handleLogin = (status) => {
+    setIsLoggedIn(status);
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    setIsLoggedIn(false);
+    navigate('/'); 
+  };
 
   const scrollToSection = (sectionId) => {
     const section = document.getElementById(sectionId);
@@ -25,52 +40,44 @@ function App() {
     }
   };
 
-  return (  
-    <Router>  
-      <div>  
-        <nav className="navbar">
-          <img src={logo} alt="Bike Hub Logo" className="logo-image" />  
-          <h1 className="logo">BIKE HUB</h1>
-          <p className='side'>Service and Rental Portal</p>
-          <div className="center-nav">  
-            <Link to="/">Home</Link>   
-            <Link to="/" onClick={() => scrollToSection('explore-section')}>
-              Explore
-            </Link>
-            <Link to="/" onClick={() => scrollToSection('about-section')}>
-              About Us
-            </Link> 
-            <Link to="/" onClick={() => scrollToSection('contact-section')}>
-              Contact Us
-            </Link>
-          </div>  
-          <div className="right-nav">  
-            {isLoggedIn ? (  
-              <div className="profile-dropdown">  
-                <span>Profile</span>  
-                <div className="dropdown-content">  
-                  <Link to="/settings">Settings</Link>  
-                  <Link to="/" onClick={handleLogout}>Logout</Link>  
-                </div>  
-              </div>  
-            ) : (  
-              <>  
-                <Link to="/login">Login</Link>  
-                <Link to="/signup">Sign Up</Link>  
-              </>  
-            )}  
-          </div>  
-        </nav>  
+  return (
+    <div>
+      <nav className="navbar">
+        <img src={logo} alt="Bike Hub Logo" className="logo-image" />
+        <h1 className="logo">BIKE HUB</h1>
+        <p className='side'>Service and Rental Portal</p>
+        <div className="center-nav">
+          <NavLink to="/">Home</NavLink>
+          <NavLink to="/" onClick={() => scrollToSection('explore-section')}>Explore</NavLink>
+          <NavLink to="/" onClick={() => scrollToSection('about-section')}>About Us</NavLink>
+          <NavLink to="/" onClick={() => scrollToSection('contact-section')}>Contact Us</NavLink>
+        </div>
+        <div className="right-nav">
+          {isLoggedIn ? (
+            <>
+              <NavLink to="/profile">Profile</NavLink>
+              <button onClick={handleLogout}>Logout</button>
+            </>
+          ) : (
+            <>
+              <NavLink to="/login">Login</NavLink>
+              <NavLink to="/signup">Sign Up</NavLink>
+            </>
+          )}
+        </div>
+      </nav>
 
-        <Routes>  
-          <Route path="/" element={<Home isLoggedIn={isLoggedIn} />} />  
-          <Route path="/signup" element={<SignUp />} />  
-          <Route path="/login" element={<Login onLogin={handleLogin} />} />  
-          <Route path="/bike-options" element={<BikeOptions />} />  
-        </Routes>  
-      </div>  
-    </Router>  
-  );  
-}  
+      <Routes>
+        <Route path="/" element={<Home isLoggedIn={isLoggedIn} />} />
+        <Route path="/signup" element={<SignUp />} />
+        <Route path="/login" element={<Login onLogin={handleLogin} />} />
+        <Route path="/service-form" element={isLoggedIn ? <ServiceForm closeForm={() => navigate('/')} /> : <Login onLogin={handleLogin} />} />
+        <Route path="/bike-options" element={isLoggedIn ? <BikeOptions /> : <Login onLogin={handleLogin} />} />
+        <Route path="/profile" element={isLoggedIn ? <Profile onLogout={handleLogout} /> : <Login onLogin={handleLogin} />} />
+        <Route path="/service-status" element={isLoggedIn ? <ServiceStatus /> : <Login onLogin={handleLogin} />} />
+      </Routes>
+    </div>
+  );
+}
 
 export default App;
