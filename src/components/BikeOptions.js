@@ -32,12 +32,11 @@ function BikeOptions() {
   const handleConfirmSelection = () => {
     navigate('/service-form', {
         state: {
-            ...formData, 
+            ...formData, // retain existing data
             selectedBike: selectedBike 
         }
     });
-};
-
+  };
 
   const handleCloseModal = () => {
     setShowModal(false);
@@ -68,7 +67,8 @@ function BikeOptions() {
         <div className="modal">
           <div className="modal-content">
             <h3>Confirm Selection</h3>
-            <p>Are you sure you want to select the {selectedBike}?</p>
+            <p>Are you sure you want to select the </p>
+            <h3>"{selectedBike}?"</h3>
             <div className="action-buttons">
               <button onClick={handleConfirmSelection}>Confirm</button>
               <button onClick={handleCloseModal}>Cancel</button>
@@ -80,4 +80,4 @@ function BikeOptions() {
   );  
 }  
 
-export default BikeOptions;
+export default BikeOptions;  

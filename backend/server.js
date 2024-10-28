@@ -18,7 +18,7 @@ app.use(cors());
 const db = mysql.createPool({
     host: process.env.DB_HOST || 'localhost',
     user: process.env.DB_USER || 'root',
-    password: process.env.DB_PASSWORD || '    ',//your password
+    password: process.env.DB_PASSWORD || '1234',//your password
     database: process.env.DB_NAME || 'bike_hub',//your database name
     connectionLimit: 10, 
 });
@@ -132,7 +132,7 @@ app.post('/login', (req, res) => {
 app.get('/service-status', authenticateToken, (req, res) => {
     const userId = req.user.id;
 
-    const sql = `SELECT name, phone, bike_model, service_date, issue, status 
+    const sql = `SELECT name, phone, bike_model, service_date, issue,selected_bike, status 
                  FROM service_requests WHERE user_id = ?`;
     db.query(sql, [userId], (err, results) => {
         if (err) return res.status(500).json({ message: 'Database error' });

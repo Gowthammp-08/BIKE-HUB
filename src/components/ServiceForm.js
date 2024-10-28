@@ -18,26 +18,24 @@ function ServiceForm({ closeForm }) {
 
     useEffect(() => {
         const { state } = location;
-        if (state && state.selectedBike) {
+        if (state) {
             setFormData((prevData) => ({
                 ...prevData,
-                selectedBike: state.selectedBike,
+                ...state, // Combine existing data with new state
             }));
         }
     }, [location]);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
-
-        if (name === "rentBike" && value === "yes") {
-            setFormData((prevData) => ({ ...prevData, selectedBike: '' }));
-            navigate('/bike-options', { state: formData });
-        } else {
-            setFormData({ ...formData, [name]: value });
-        }
+        setFormData({ ...formData, [name]: value });
     };
 
     const validatePhone = (phone) => /^[0-9]{10}$/.test(phone);
+
+    const handleRentBike = () => {
+        navigate('/bike-options', { state: formData }); // Pass existing formData to BikeOptions
+    };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -134,30 +132,15 @@ function ServiceForm({ closeForm }) {
             <label>Issue on Bike (optional):</label>
             <input type="text" name="issue" value={formData.issue} onChange={handleChange} placeholder="Describe issue (optional)" />
 
-            <label>Like to Rent a Bike?</label>
-            <div className="radio-options">
-                <label>
-                    <input
-                        type="radio"
-                        name="rentBike"
-                        value="yes"
-                        onChange={handleChange}
-                    />
-                    Yes
-                </label>
-                <label>
-                    <input
-                        type="radio"
-                        name="rentBike"
-                        value="no"
-                        onChange={handleChange}
-                    />
-                    No
-                </label>
-            </div>
+            <p>(Optional)</p>
+            <button type="button" className="rent-bike-button" onClick={handleRentBike}>
+                Rent Bike 
+            </button>
 
-            <label>Selected Bike:</label>
-            <input type="text" value={formData.selectedBike || ''} readOnly />
+            <label>Selected Bike for Rent:</label>
+            <input type="text" value={formData.selectedBike || ''} readOnly placeholder="Not Selected" />
+            
+            
 
             <div className="action-buttons">
                 <button type="submit" disabled={isLoading}>

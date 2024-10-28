@@ -64,4 +64,48 @@
 
 .select-button:hover {  
     background-color: #00b31b;  
-} 
+}  
+
+/* Modal Styling */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* Make sure modal is on top */
+}
+
+.modal-content {
+    background-color: #282c34; /* Dark background for the modal */
+    color: #ffffff; /* White text color */
+    padding: 2rem;
+    border-radius: 8px; /* Rounded corners */
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Slight shadow */
+    max-width: 400px; /* Set a max width for the modal */
+    width: 90%; /* Responsive width */
+}
+
+.action-buttons {
+    margin-top: 20px; /* Space between text and buttons */
+}
+
+.action-buttons button {
+    margin: 0 10px; /* Spacing between buttons */
+    background-color: #61dafb; /* Light blue for buttons */
+    color: #282c34; /* Dark text color */
+    border: none;
+    border-radius: 5px;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.action-buttons button:hover {
+    background-color: #21a1f1; /* Darker blue on hover */
+}

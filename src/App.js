@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Route, Routes, NavLink, useNavigate } from 'react-router-dom';
-
 import Home from './components/Home';
 import SignUp from './components/Signup';
 import Login from './components/Login';
@@ -12,14 +11,18 @@ import logo from './components/images/logo.jpeg';
 import './App.css';
 
 function App() {
-  // Check for token in localStorage initially
-  const [isLoggedIn, setIsLoggedIn] = useState(() => !!localStorage.getItem('token'));
+  const [isLoggedIn, setIsLoggedIn] = useState(false); // Initialize as false
   const navigate = useNavigate();
 
+  // Check local storage only on refresh
   useEffect(() => {
     const token = localStorage.getItem('token');
-    setIsLoggedIn(!!token);
-  }, []);
+    if (token) {
+      // If you want to use the token, you could do something here.
+      // But to ensure the app always starts in pre-login state, we won’t set isLoggedIn here.
+      setIsLoggedIn(false); // Force to false on initial load
+    }
+  }, []); // Empty dependency array to run only on mount
 
   const handleLogin = (status) => {
     setIsLoggedIn(status);
@@ -54,7 +57,6 @@ function App() {
           {isLoggedIn ? (
             <>
               <NavLink to="/profile">Profile</NavLink>
-              <button onClick={handleLogout}>Logout</button>
             </>
           ) : (
             <>
