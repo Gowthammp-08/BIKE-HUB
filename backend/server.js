@@ -1,3 +1,7 @@
+//Created Table for signup details as users
+//Created Table for registeration details as service_requests
+
+
 const express = require('express');
 const bcrypt = require('bcryptjs');
 const mysql = require('mysql2');
@@ -14,8 +18,8 @@ app.use(cors());
 const db = mysql.createPool({
     host: process.env.DB_HOST || 'localhost',
     user: process.env.DB_USER || 'root',
-    password: process.env.DB_PASSWORD || '1234',
-    database: process.env.DB_NAME || 'bike_hub',
+    password: process.env.DB_PASSWORD || '    ',//your password
+    database: process.env.DB_NAME || 'bike_hub',//your database name
     connectionLimit: 10, 
 });
 
