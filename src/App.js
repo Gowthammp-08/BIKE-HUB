@@ -18,11 +18,9 @@ function App() {
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (token) {
-      // If you want to use the token, you could do something here.
-      // But to ensure the app always starts in pre-login state, we won’t set isLoggedIn here.
-      setIsLoggedIn(false); // Force to false on initial load
+      setIsLoggedIn(false); 
     }
-  }, []); // Empty dependency array to run only on mount
+  }, []); 
 
   const handleLogin = (status) => {
     setIsLoggedIn(status);
